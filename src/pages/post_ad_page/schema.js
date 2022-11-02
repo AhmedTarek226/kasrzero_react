@@ -1,7 +1,8 @@
 import * as yup from "yup";
 
 export const schema = yup.object().shape({
-  category: yup.string().required("Choose category"),
+  categoryId: yup.string().required("Choose category"),
+  color: yup.string().required("Choose color"),
   title: yup
     .string()
     .min(4, "must enter more than 4 characters")
@@ -11,7 +12,7 @@ export const schema = yup.object().shape({
     .number("must be a number")
     .moreThan(0, "This price is not valid")
     .required("Product price is required"),
-  exchangableCheck: yup.boolean(),
+  ableToExchange: yup.boolean(),
   brand: yup.string().required("Choose brand"),
   durationOfUse: yup.string().required("Choose duration of use"),
   firstFilter: yup.string().required("This field is required"),
