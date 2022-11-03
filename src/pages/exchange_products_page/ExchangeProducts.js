@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./ExchangeProducts.css";
 import Sidebar from "./components/Sidebar";
 import ProductCard from "./components/ProductCard";
@@ -10,79 +10,41 @@ import Tab from "react-bootstrap/Tab";
 import { Container } from "react-bootstrap";
 
 function ExchangeProducts(props) {
+  const offers = ["6362899d3dcf675a3e09b2f4", "636289ee3dcf675a3e09b2f9"];
+  const productId = "6362894c3dcf675a3e09b2f0";
+
+  useEffect(() => {}, []);
   return (
     <Container fluid>
       <Row className="container-fluid px-0 px-0 py-3 d-flex my-4">
         <Col>
-          <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
+          <Tab.Container id="list-group-tabs-example" defaultActiveKey={"#"+offers[0]}>
             <Row>
-              <Container style={{margin:0, width: "29%" }}>
+              <Container style={{ margin: 0, width: "18vw" }}>
                 <h3 className="fs-5 text-center py-4 mb-3 border border-primary text-primary rounded-2 border-2">
                   Exchanging Offers
                 </h3>
                 <Container
                   className="overflow-auto w-100 px-0 rounded"
-                  style={{ height: "55vh" }}
+                  style={{ maxHeight: "55vh" }}
                 >
                   <ListGroup
                     className="list-group w-100 m-0 p-0"
                     as="ol"
                     numbered
                   >
-                    <ListGroup.Item className="px-2" as="li" action href="#link1">
-                      Link 1
-                    </ListGroup.Item>
-                    <ListGroup.Item className="px-2" as="li" action href="#link2">
-                      Link 2
-                    </ListGroup.Item>
-                    <ListGroup.Item className="px-2" as="li" action href="#link3">
-                      Link 1
-                    </ListGroup.Item>
-                    <ListGroup.Item className="px-2" as="li" action href="#link2">
-                      Link 2
-                    </ListGroup.Item>
-                    <ListGroup.Item className="px-2" as="li" action href="#link1">
-                      Link 1
-                    </ListGroup.Item>
-                    <ListGroup.Item className="px-2" as="li" action href="#link2">
-                      Link 2
-                    </ListGroup.Item>
-                    <ListGroup.Item className="px-2" as="li" action href="#link1">
-                      Link 1
-                    </ListGroup.Item>
-                    <ListGroup.Item className="px-2" as="li" action href="#link2">
-                      Link 2
-                    </ListGroup.Item>
-                    <ListGroup.Item className="px-2" as="li" action href="#link1">
-                      Link 1
-                    </ListGroup.Item>
-                    <ListGroup.Item className="px-2" as="li" action href="#link2">
-                      Link 2
-                    </ListGroup.Item>
-                    <ListGroup.Item className="px-2" as="li" action href="#link1">
-                      Link 1
-                    </ListGroup.Item>
-                    <ListGroup.Item className="px-2" as="li" action href="#link2">
-                      Link 2
-                    </ListGroup.Item>
-                    <ListGroup.Item className="px-2" as="li" action href="#link2">
-                      Link 2
-                    </ListGroup.Item>
-                    <ListGroup.Item as="li" action href="#link2">
-                      Link 2
-                    </ListGroup.Item>
-                    <ListGroup.Item as="li" action href="#link2">
-                      Link 2
-                    </ListGroup.Item>
-                    <ListGroup.Item as="li" action href="#link2">
-                      Link 2
-                    </ListGroup.Item>
-                    <ListGroup.Item as="li" action href="#link2">
-                      Link 2
-                    </ListGroup.Item>
-                    <ListGroup.Item as="li" action href="#link2">
-                      Link 2
-                    </ListGroup.Item>
+                    {offers.map((offer, index) => (
+                      <ListGroup.Item
+                        className="px-2"
+                        style={{ cursor: "pointer" }}
+                        as="li"
+                        action
+                        
+                        href={"#" + offer}
+                      >
+                        {offer}
+                      </ListGroup.Item>
+                    ))}
                   </ListGroup>
                 </Container>
                 <button
@@ -92,22 +54,21 @@ function ExchangeProducts(props) {
                   Accept this offer
                 </button>
               </Container>
-              <Col>
+              <Container style={{ width: "39.588vw" }}>
                 <Tab.Content>
-                  <Tab.Pane eventKey="#link1">
-                    <ProductCard />
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="#link2">
-                    <p>link2</p>
-                  </Tab.Pane>
+                  {offers.map((offer) => (
+                    <Tab.Pane eventKey={"#" + offer}>
+                      <ProductCard productId={offer} />
+                    </Tab.Pane>
+                  ))}
                 </Tab.Content>
-              </Col>
+              </Container>
             </Row>
           </Tab.Container>
         </Col>
-        <Col sm={5}>
-          <ProductCard />
-        </Col>
+        <Container style={{ width: "39.588vw" }}>
+          <ProductCard productId={productId} />
+        </Container>
       </Row>
     </Container>
   );

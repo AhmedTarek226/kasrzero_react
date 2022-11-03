@@ -111,7 +111,7 @@ function PostAd(props) {
     values.categoryId = selectedCat._id;
     console.log(values);
     axiosInstance
-      .post("product/add/6362392b83690a2622a300d0", form)
+      .post("product/add/6362890cf85d9a3d675e7929", form)
       .then((res) => {
         console.log(res);
       });
